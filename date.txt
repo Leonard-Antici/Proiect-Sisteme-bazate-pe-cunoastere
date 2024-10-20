@@ -1,0 +1,6 @@
+informatie gen masculin
+informatie inaltime 12
+informatie greutate 23
+informatie bmi 1597.2
+informatie nivelDeActivitate normal
+informatie varsta 25

@@ -1,0 +1,750 @@
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+"""
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+"""
+import env
+
+# Press the green button in the gutter to run the script.
+
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+""" 
+import tkinter as tk
+from PIL import Image, ImageTk
+def afiseaza_alegere_sex():
+    hide_widgets()
+    sex_label.grid(row=0, column=0, sticky="w")
+    sex_menu.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_varsta)
+    back_button.config(command=hide_widgets)
+
+def afiseaza_alegere_varsta():
+    hide_widgets()
+    varsta_label.grid(row=0, column=0, sticky="w")
+    varsta_entry.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_kg)
+    back_button.config(command=afiseaza_alegere_sex)
+
+def afiseaza_alegere_kg():
+    hide_widgets()
+    kg_label.grid(row=0, column=0, sticky="w")
+    kg_entry.grid(row=0, column=1)
+    next_button.config(command=salveaza_date)
+    back_button.config(command=afiseaza_alegere_varsta)
+
+def salveaza_date():
+    sex = sex_var.get()
+    varsta = varsta_entry.get()
+    kg = kg_entry.get()
+
+    with open("date.txt", "a") as file:
+        file.write(f"{sex}\n {varsta}\n {kg}\n")
+
+
+    label.config(text="Date salvate cu succes!")
+    next_button.config(state=tk.DISABLED)
+    back_button.config(state=tk.DISABLED)
+
+def hide_widgets():
+    sex_label.grid_forget()
+    sex_menu.grid_forget()
+    varsta_label.grid_forget()
+    varsta_entry.grid_forget()
+    kg_label.grid_forget()
+    kg_entry.grid_forget()
+
+# Crearea ferestrei principale
+root = tk.Tk()
+root.title("Perfect Body by A.L.M.")
+root.geometry("400x300")
+# Crearea un frame pentru a grupa elementele
+frame = tk.Frame(root)
+frame.pack(padx=20, pady=20)
+
+# Eticheta pentru sex
+sex_label = tk.Label(frame, text="Sex:")
+sex_var = tk.StringVar()
+sex_var.set("Gen:")
+sex_options = ["Femeie", "Bărbat"]
+sex_menu = tk.OptionMenu(frame, sex_var, *sex_options)
+
+# Eticheta și caseta de text pentru vârstă
+varsta_label = tk.Label(frame, text="Vârstă:")
+varsta_entry = tk.Entry(frame)
+
+# Eticheta și caseta de text pentru kilograme
+kg_label = tk.Label(frame, text="Kilograme:")
+kg_entry = tk.Entry(frame)
+
+# Butonul pentru a afișa următoarea alegere
+next_button = tk.Button(root, text="Next")
+next_button.pack(pady=5)
+
+# Butonul pentru a reveni la alegerea anterioară
+back_button = tk.Button(root, text="Back")
+back_button.pack(pady=5)
+
+# Eticheta pentru afișarea mesajului de confirmare
+label = tk.Label(root, text="")
+label.pack(pady=10)
+
+# Inițial, afișăm alegerea pentru sex
+afiseaza_alegere_sex()
+
+# Rularea buclei principale a aplicației
+root.mainloop()
+"""
+
+"""
+import tkinter as tk
+from PIL import Image, ImageTk
+
+# Crearea ferestrei principale
+root = tk.Tk()
+root.title("Perfect Body by A.L.M.")
+root.geometry("400x300")
+
+# Definirea variabilei sex_var în scop global
+sex_var = tk.StringVar()
+body_type = tk.StringVar()
+
+def select_gender(gender):
+    print("Gen selectat:", gender)
+    sex_var.set(gender)  # Actualizare variabilă sex_var cu genul selectat
+    afiseaza_alegere_body_type()  # Apelul pentru următoarea etapă a selecției
+
+def select_type(type):
+    print("Tip corp selectat:", type)
+    body_type.set(type)
+  #  afiseaza_alegere_varsta()
+def afiseaza_alegere_sex():
+    hide_widgets()
+    # Afișăm butoanele cu imaginile pentru alegerea sexului
+    button_female.grid(row=0, column=0)
+    button_male.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_body_type)
+    back_button.config(command=hide_widgets)
+def afiseaza_alegere_body_type():
+    hide_widgets()
+    # afișăm butoanele pentru alegerea tipului de corp
+    button_male_slim.grid(row=0, column=0)
+    button_male_average.grid(row=0, column=1)
+    button_male_heavy.grid(row=0, column=2)
+    next_button.config(command=afiseaza_alegere_varsta)  # Schimbăm comanda pentru butonul Next
+    back_button.config(command=afiseaza_alegere_sex)
+
+
+def afiseaza_alegere_varsta():
+    hide_widgets()
+    varsta_label.grid(row=0, column=0, sticky="w")
+    varsta_entry.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_kg)
+    back_button.config(command=afiseaza_alegere_body_type)
+
+def afiseaza_alegere_kg():
+    hide_widgets()
+    kg_label.grid(row=0, column=0, sticky="w")
+    kg_entry.grid(row=0, column=1)
+    next_button.config(command=salveaza_date)
+    back_button.config(command=afiseaza_alegere_varsta)
+
+def salveaza_date():
+    sex = sex_var.get()
+    body = body_type.get()
+    varsta = varsta_entry.get()
+    kg = kg_entry.get()
+
+    with open("date.txt", "a") as file:
+        file.write(f"Gen: {sex}\nTip corp: {body}\nVârstă: {varsta}\nGreutate: {kg}\n\n")
+
+    label.config(text="Date salvate cu succes!")
+    next_button.config(state=tk.DISABLED)
+    back_button.config(state=tk.DISABLED)
+
+def hide_widgets():
+    button_female.grid_forget()
+    button_male.grid_forget()
+    button_male_slim.grid_forget()
+    button_male_average.grid_forget()
+    button_male_heavy.grid_forget()
+    varsta_label.grid_forget()
+    varsta_entry.grid_forget()
+    kg_label.grid_forget()
+    kg_entry.grid_forget()
+
+# Crearea unui frame pentru a grupa elementele
+frame = tk.Frame(root)
+frame.pack(padx=20, pady=20)
+
+# Încărcarea imaginilor
+image_female = Image.open("imagini/femeie.jpg")
+image_male = Image.open("imagini/barbat.jpg")
+image_male_slim = Image.open("imagini/barbat.jpg")
+image_male_average = Image.open("imagini/barbat.jpg")
+image_male_heavy = Image.open("imagini/barbat.jpg")
+
+# Redimensionarea imaginilor dacă este necesar
+width, height = 100, 100
+image_female = image_female.resize((width, height))
+image_male = image_male.resize((width, height))
+image_male_slim = image_male.resize((width, height))
+image_male_average = image_male.resize((width, height))
+image_male_heavy = image_male.resize((width, height))
+
+
+# Convertirea imaginilor în formatul suportat de Tkinter
+img_female = ImageTk.PhotoImage(image_female)
+img_male = ImageTk.PhotoImage(image_male)
+img_male_slim = ImageTk.PhotoImage(image_male_slim)
+img_male_average = ImageTk.PhotoImage(image_male_average)
+img_male_heavy = ImageTk.PhotoImage(image_male_heavy)
+
+
+# Butonul pentru alegerea genului "Femeie"
+button_female = tk.Button(frame, image=img_female, command=lambda: select_gender("Femeie"))
+
+# Butonul pentru alegerea genului "Bărbat"
+button_male = tk.Button(frame, image=img_male, command=lambda: select_gender("Bărbat"))
+
+# Butonul pentru alegerea genului "Bărbat_slim"
+button_male_slim = tk.Button(frame, image=img_male_slim, command=lambda: select_gender("slim"))
+
+# Butonul pentru alegerea genului "Bărbat_average"
+button_male_average = tk.Button(frame, image=img_male_average, command=lambda: select_gender("average"))
+
+# Butonul pentru alegerea genului "Bărbat"
+button_male_heavy = tk.Button(frame, image=img_male_heavy, command=lambda: select_gender("heavy"))
+
+
+
+# Eticheta pentru vârstă
+varsta_label = tk.Label(frame, text="Vârstă:")
+varsta_entry = tk.Entry(frame)
+
+# Eticheta pentru kilograme
+kg_label = tk.Label(frame, text="Kilograme:")
+kg_entry = tk.Entry(frame)
+
+# Butonul pentru a afișa următoarea alegere
+next_button = tk.Button(root, text="Next")
+next_button.pack(pady=5)
+
+# Butonul pentru a reveni la alegerea anterioară
+back_button = tk.Button(root, text="Back")
+back_button.pack(pady=5)
+
+# Eticheta pentru afișarea mesajului de confirmare
+label = tk.Label(root, text="")
+label.pack(pady=10)
+
+# Inițial, afișăm alegerea pentru sex
+afiseaza_alegere_sex()
+
+# Rularea buclei principale a aplicației
+root.mainloop()
+"""
+
+"""
+import tkinter as tk
+from PIL import Image, ImageTk
+
+# Crearea ferestrei principale
+root = tk.Tk()
+root.title("Perfect Body by A.L.M.")
+root.geometry("400x300")
+
+# Definirea variabilelor sex_var și body_type în scop global
+sex_var = tk.StringVar()
+body_type = tk.StringVar()
+
+def select_gender(gender):
+    print("Gen selectat:", gender)
+    sex_var.set(gender)  # Actualizare variabilă sex_var cu genul selectat
+
+def select_type(type):
+    print("Tip corp selectat:", type)
+    body_type.set(type)  # Actualizare variabilă body_type cu tipul corpului selectat
+
+def afiseaza_alegere_sex():
+    hide_widgets()
+    # Afișăm butoanele cu imaginile pentru alegerea sexului
+    button_female.grid(row=0, column=0)
+    button_male.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_body_type)
+    back_button.config(command=hide_widgets)
+
+def afiseaza_alegere_body_type():
+    hide_widgets()
+    # afișăm butoanele pentru alegerea tipului de corp
+    button_male_slim.grid(row=0, column=0)
+    button_male_average.grid(row=0, column=1)
+    button_male_heavy.grid(row=0, column=2)
+    next_button.config(command=afiseaza_alegere_varsta)  # Schimbăm comanda pentru butonul Next
+    back_button.config(command=afiseaza_alegere_sex)
+
+def afiseaza_alegere_varsta():
+    hide_widgets()
+    varsta_label.grid(row=0, column=0, sticky="w")
+    varsta_entry.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_kg)
+    back_button.config(command=afiseaza_alegere_body_type)
+
+def afiseaza_alegere_kg():
+    hide_widgets()
+    kg_label.grid(row=0, column=0, sticky="w")
+    kg_entry.grid(row=0, column=1)
+    next_button.config(command=salveaza_date)
+    back_button.config(command=afiseaza_alegere_varsta)
+
+def salveaza_date():
+    sex = sex_var.get()
+    body = body_type.get()
+    varsta = varsta_entry.get()
+    kg = kg_entry.get()
+
+    with open("date.txt", "a") as file:
+        file.write(f"Gen: {sex}\nTip corp: {body}\nVârstă: {varsta}\nGreutate: {kg}\n\n")
+
+    label.config(text="Date salvate cu succes!")
+    next_button.config(state=tk.DISABLED)
+    back_button.config(state=tk.DISABLED)
+
+def hide_widgets():
+    button_female.grid_forget()
+    button_male.grid_forget()
+    button_male_slim.grid_forget()
+    button_male_average.grid_forget()
+    button_male_heavy.grid_forget()
+    varsta_label.grid_forget()
+    varsta_entry.grid_forget()
+    kg_label.grid_forget()
+    kg_entry.grid_forget()
+
+# Crearea unui frame pentru a grupa elementele
+frame = tk.Frame(root)
+frame.pack(padx=20, pady=20)
+
+# Încărcarea imaginilor
+image_female = Image.open("imagini/femeie.jpg")
+image_male = Image.open("imagini/barbat.jpg")
+image_male_slim = Image.open("imagini/barbat.jpg")
+image_male_average = Image.open("imagini/barbat.jpg")
+image_male_heavy = Image.open("imagini/barbat.jpg")
+
+# Redimensionarea imaginilor dacă este necesar
+width, height = 100, 100
+image_female = image_female.resize((width, height))
+image_male = image_male.resize((width, height))
+image_male_slim = image_male.resize((width, height))
+image_male_average = image_male.resize((width, height))
+image_male_heavy = image_male.resize((width, height))
+
+# Convertirea imaginilor în formatul suportat de Tkinter
+img_female = ImageTk.PhotoImage(image_female)
+img_male = ImageTk.PhotoImage(image_male)
+img_male_slim = ImageTk.PhotoImage(image_male_slim)
+img_male_average = ImageTk.PhotoImage(image_male_average)
+img_male_heavy = ImageTk.PhotoImage(image_male_heavy)
+
+# Butonul pentru alegerea genului "Femeie"
+button_female = tk.Button(frame, image=img_female, command=lambda: select_gender("Femeie"))
+
+# Butonul pentru alegerea genului "Bărbat"
+button_male = tk.Button(frame, image=img_male, command=lambda: select_gender("Bărbat"))
+
+# Butonul pentru alegerea genului "Bărbat_slim"
+button_male_slim = tk.Button(frame, image=img_male_slim, command=lambda: select_type("slim"))
+
+# Butonul pentru alegerea genului "Bărbat_average"
+button_male_average = tk.Button(frame, image=img_male_average, command=lambda: select_type("average"))
+
+# Butonul pentru alegerea genului "Bărbat"
+button_male_heavy = tk.Button(frame, image=img_male_heavy, command=lambda: select_type("heavy"))
+
+# Eticheta pentru vârstă
+varsta_label = tk.Label(frame, text="Vârstă:")
+varsta_entry = tk.Entry(frame)
+
+# Eticheta pentru kilograme
+kg_label = tk.Label(frame, text="Kilograme:")
+kg_entry = tk.Entry(frame)
+
+# Butonul pentru a afișa următoarea alegere
+next_button = tk.Button(root, text="Next")
+next_button.pack(pady=5)
+
+# Butonul pentru a reveni la alegerea anterioară
+back_button = tk.Button(root, text="Back")
+back_button.pack(pady=5)
+
+# Eticheta pentru afișarea mesajului de confirmare
+label = tk.Label(root, text="")
+label.pack(pady=10)
+
+# Inițial, afișăm alegerea pentru sex
+afiseaza_alegere_sex()
+
+# Rularea buclei principale a aplicației
+root.mainloop()
+
+
+"""
+
+import sys
+import tkinter as tk
+from tkinter import ttk
+from PIL import Image, ImageTk
+from clips import Environment
+
+
+# Crearea ferestrei principale
+root = tk.Tk()
+root.title("Perfect Body by A.L.M.")
+root.geometry("800x800")
+root.configure(bg="#383838")
+
+# Definirea variabilelor sex_var și body_type în scop global
+sex_var = tk.StringVar()
+body_type = tk.StringVar()
+
+
+def select_gender(gender):
+    print("Gen selectat:", gender)
+    sex_var.set(gender)  # Actualizare variabilă sex_var cu genul selectat
+    if gender == "femeie":
+        afiseaza_alegere_body_type_femeie()
+    else:
+        afiseaza_alegere_body_type_barbat()
+
+
+def select_type(type):
+    print("Tip corp selectat:", type)
+    body_type.set(type)  # Actualizare variabilă body_type cu tipul corpului selectat
+
+
+def afiseaza_alegere_sex():
+    hide_widgets()
+    # Afișăm butoanele cu imaginile pentru alegerea sexului
+    button_female.grid(row=0, column=0)
+    button_male.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_body_type_femeie)
+    back_button.config(command=hide_widgets)
+
+def afiseaza_alegere_body_type_femeie():
+    hide_widgets()
+    # afișăm butoanele pentru alegerea tipului de corp pentru femei
+    button_female_slim.grid(row=0, column=0)
+    button_female_average.grid(row=1, column=0)
+    button_female_heavy.grid(row=2, column=0)
+    next_button.config(command=afiseaza_alegere_varsta)  # Schimbăm comanda pentru butonul Next
+    back_button.config(command=afiseaza_alegere_sex)
+
+
+def afiseaza_alegere_body_type_barbat():
+    hide_widgets()
+    # afișăm butoanele pentru alegerea tipului de corp pentru bărbați
+    button_male_slim.grid(row=0, column=0)
+    button_male_average.grid(row=1, column=0)
+    button_male_heavy.grid(row=2, column=0)
+    next_button.config(
+        command=afiseaza_alegere_varsta
+    )  # Schimbăm comanda pentru butonul Next
+    back_button.config(command=afiseaza_alegere_sex)
+
+
+
+def afiseaza_alegere_varsta():
+    hide_widgets()
+    varsta_label.grid(row=0, column=0, sticky="w")
+    varsta_entry.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_kg)
+    back_button.config(command=afiseaza_alegere_sex)
+
+
+def afiseaza_alegere_kg():
+    hide_widgets()
+    kg_label.grid(row=0, column=0, sticky="w")
+    kg_entry.grid(row=0, column=1)
+    next_button.config(command=afiseaza_alegere_inaltime)
+    back_button.config(command=afiseaza_alegere_varsta)
+
+
+def afiseaza_alegere_inaltime():
+    hide_widgets()
+    inaltime_label.grid(row=0, column=0, sticky="w")
+    inaltime_entry.grid(row=0, column=1)
+    next_button.config(command=salveaza_date)
+    back_button.config(command=afiseaza_alegere_kg)
+
+
+def salveaza_date():
+    sex = sex_var.get()
+    body = body_type.get()
+    varsta = varsta_entry.get()
+    inaltime = inaltime_entry.get()
+    kg = kg_entry.get()
+    # bmi=float(45.4)
+    bmi = round(10000 * int(kg) / (int(inaltime) * int(inaltime)), 1)
+    with open("date.txt", "w") as file:
+        file.truncate(0)
+    with open("date.txt", "a") as file:
+        file.write(
+            f"informatie gen {sex}\ninformatie inaltime {inaltime}\ninformatie greutate {kg}\ninformatie bmi {bmi}\ninformatie nivelDeActivitate normal"
+        )
+    # {body} {varsta}
+    label.config(text="Date salvate cu succes!")
+    next_button.config(text="Start")  # Schimbă textul butonului în "Noul text"
+
+    next_button.config(command=run_clips)
+
+
+def run_clips():
+    # Crearea mediului CLIPS și încărcarea fișierului
+    env = Environment()
+    env.clear()
+    env.load("AntrenamenteAcasa.clp")
+    env.reset()
+    env.run()
+
+    # Obținerea listei de fapte
+    facts = env.eval("(get-fact-list *)")
+
+    # Funcția pentru afișarea faptelor în interfața grafică
+    root = tk.Tk()
+    root.title("Rezultate CLIPS")
+
+    # Eticheta pentru titlu
+    label = tk.Label(root, text="Rezultate CLIPS", font=("Helvetica", 16))
+    label.pack(pady=10)
+
+    # Creați un widget de text pentru afișarea faptelor
+    text_area = tk.Text(root, wrap="word", width=60, height=20)
+    text_area.pack(padx=10, pady=10)
+
+    # Adăugați fiecare fact în widgetul de text
+    for fact in facts:
+        text_area.insert(tk.END, str(fact) + "\n")
+    root.mainloop()
+
+def hide_widgets():
+    button_female.grid_forget()
+    button_male.grid_forget()
+    button_female_slim.grid_forget()
+    button_female_average.grid_forget()
+    button_female_heavy.grid_forget()
+    button_male_slim.grid_forget()
+    button_male_average.grid_forget()
+    button_male_heavy.grid_forget()
+    varsta_label.grid_forget()
+    varsta_entry.grid_forget()
+    kg_label.grid_forget()
+    kg_entry.grid_forget()
+    inaltime_label.grid_forget()
+    inaltime_entry.grid_forget()
+
+
+
+# Crearea unui frame pentru a grupa elementele
+frame = tk.Frame(root)
+frame.pack(padx=20, pady=20)
+
+# Încărcarea imaginilor pentru femei
+image_female = Image.open("imagini/femeie.jpg")
+image_female_slim = Image.open("imagini/f_slim.jpg")
+image_female_average = Image.open("imagini/f_average.jpg")
+image_female_heavy = Image.open("imagini/f_heavy.jpg")
+
+# Redimensionarea imaginilor dacă este necesar
+width, height = 400, 180
+image_female = image_female.resize((150, height))
+image_female_slim = image_female_slim.resize((width, height))
+image_female_average = image_female_average.resize((width, height))
+image_female_heavy = image_female_heavy.resize((width, height))
+
+# Convertirea imaginilor în formatul suportat de Tkinter
+img_female = ImageTk.PhotoImage(image_female)
+img_female_slim = ImageTk.PhotoImage(image_female_slim)
+img_female_average = ImageTk.PhotoImage(image_female_average)
+img_female_heavy = ImageTk.PhotoImage(image_female_heavy)
+
+# img_female = ImageTk.PhotoImage(image_female)
+# img_female_slim = ImageTk.PhotoImage(file="imagini/f_slim.jpg")
+# img_female_average = ImageTk.PhotoImage(file="imagini/f_average.jpg")
+# img_female_heavy = ImageTk.PhotoImage(file="imagini/f_heavy.jpg")
+
+
+# img_female_slim = ImageTk.PhotoImage("imagini/f_slim.jpg")
+# img_female_average = ImageTk.PhotoImage("imagini/f_average.jpg")
+# img_female_heavy = ImageTk.PhotoImage("imagini/f_heavy.jpg")
+
+# Încărcarea imaginilor pentru bărbați
+image_male = Image.open("imagini/barbat.jpg")
+image_male_slim = Image.open("imagini/b_slim.jpg")
+image_male_average = Image.open("imagini/b_average.jpg")
+image_male_heavy = Image.open("imagini/b_heavy.jpg")
+
+# Redimensionarea imaginilor dacă este necesar
+image_male = image_male.resize((150, height))
+image_male_slim = image_male_slim.resize((width, height))
+image_male_average = image_male_average.resize((width, height))
+image_male_heavy = image_male_heavy.resize((width, height))
+
+# Convertirea imaginilor în formatul suportat de Tkinter
+img_male = ImageTk.PhotoImage(image_male)
+img_male_slim = ImageTk.PhotoImage(image_male_slim)
+img_male_average = ImageTk.PhotoImage(image_male_average)
+img_male_heavy = ImageTk.PhotoImage(image_male_heavy)
+
+# Butonul pentru alegerea genului "Femeie"
+button_female = tk.Button(
+    frame, image=img_female, command=lambda: select_gender("femeie")
+)
+
+button_male = tk.Button(frame, image=img_male, command=lambda: select_gender("barbat"))
+
+# Butonul pentru alegerea genului "Femeie_slim"
+button_female_slim = tk.Button(
+    frame, image=img_female_slim, command=lambda: select_type("slim")
+)
+
+# Butonul pentru alegerea genului "Femeie_average"
+button_female_average = tk.Button(
+    frame, image=img_female_average, command=lambda: select_type("average")
+)
+
+# Butonul pentru alegerea genului "Femeie_heavy"
+button_female_heavy = tk.Button(
+    frame, image=img_female_heavy, command=lambda: select_type("heavy")
+)
+
+# Butonul pentru alegerea genului "Bărbat_slim"
+button_male_slim = tk.Button(
+    frame, image=img_male_slim, command=lambda: select_type("slim")
+)
+
+# Butonul pentru alegerea genului "Bărbat_average"
+button_male_average = tk.Button(
+    frame, image=img_male_average, command=lambda: select_type("average")
+)
+
+# Butonul pentru alegerea genului "Bărbat_heavy"
+button_male_heavy = tk.Button(
+    frame, image=img_male_heavy, command=lambda: select_type("heavy")
+)
+
+# Eticheta pentru vârstă
+varsta_label = tk.Label(frame, text="Vârstă:")
+varsta_entry = tk.Entry(frame)
+
+# Eticheta pentru inaltime
+inaltime_label = tk.Label(frame, text="Inaltime:(cm)")
+inaltime_entry = tk.Entry(frame)
+
+# Eticheta pentru kilograme
+kg_label = tk.Label(frame, text="Kilograme:")
+kg_entry = tk.Entry(frame)
+
+# stilizare butoane
+style = ttk.Style()
+style.configure(
+    "TButton",
+    font=("helvetica", 12),
+    padding=10,
+    background="lightblue",
+    foreground="black",
+)
+# Butonul pentru a afișa următoarea alegere
+next_button = ttk.Button(root, text="Next")
+next_button.pack(padx=10, pady=10)
+
+# Butonul pentru a reveni la alegerea anterioară
+back_button = ttk.Button(root, text="Back")
+back_button.pack(padx=10, pady=10)
+
+
+
+# Eticheta pentru afișarea mesajului de confirmare
+label = tk.Label(root, text="")
+label.pack(pady=10)
+
+# Inițial, afișăm alegerea pentru sex
+afiseaza_alegere_sex()
+
+""" 
+with open('output.txt', 'r') as file:
+    # Citirea întregului conținut al fișierului
+    content = file.read()
+    print(content)
+"""
+import clips
+import io
+import sys
+
+""" 
+    envv = clips.Environment()
+    envv.clear() #clear echivalent celui din Clips
+    envv.load("C:\\Users\\antic\\PycharmProjects\\pythonProject2\\AntrenamenteEtapa3.clp") #load la fisier (fisierul sa fie mai intai incarcatin colab)
+    envv.reset()  # reset echivalent celui din Clips
+    envv.run()  # run echivalent celui din Clips
+    facts = envv.eval("(get-fact-list *)")  # salvarea bazei de fapte intr-o variabila
+    print('######### Baza de fapte #########')
+    print(facts)  # afisarea bazei de fapte
+    print('######### Afisare tip baza de fapte #########')
+    print(type(facts))
+    print('######### Afisarea bazei de fapte #########')
+    #for fact in facts:
+     #   print(fact)
+    #print(type())
+
+    # Capturarea ieșirii din consola CLIPS
+   # envv.capture_output()
+
+# Rularea regulilor din mediul CLIPS
+    envv.run()
+
+# Obținerea și afișarea rezultatelor capturate
+    output = envv.get_capture_string()
+    print(output)
+
+
+
+"""
+"""
+# Inițializare mediu CLIPS
+envv = clips.Environment()
+envv.load(
+    "C:\\Users\\antic\\PycharmProjects\\pythonProject2\\AntrenamenteEtapa3.clp"
+)  # Încărcarea regulilor din fișierul CLIPS
+envv.reset()  # Resetarea mediului CLIPS
+
+# Redirecționarea ieșirii standard către un flux de ieșire temporar
+captured_output = io.StringIO()
+sys.stdout = captured_output
+
+# Resetare mediu CLIPS
+envv.reset()
+
+# Rularea regulilor din mediul CLIPS
+envv.run()
+
+# Restaurarea ieșirii standard
+sys.stdout = sys.__stdout__
+
+# Obținerea și afișarea rezultatelor capturate
+output = captured_output.getvalue()
+print(output)
+
+"""
+
+
+
+# Rularea buclei principale a aplicației
+root.mainloop()

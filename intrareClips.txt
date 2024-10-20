@@ -1,0 +1,6 @@
+informatie gen masculin
+informatie inaltime 176
+informatie greutate 78
+informatie bmi 25.2
+informatie nivelDeActivitate foarteActiv
+informatie varsta 22
